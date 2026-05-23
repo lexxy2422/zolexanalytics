@@ -1,0 +1,53 @@
+# ── Dependencies ──────────────────────────────────────────────
+node_modules/
+.pnp
+.pnp.js
+
+# ── Build output ──────────────────────────────────────────────
+dist/
+dist-ssr/
+build/
+
+# ── Environment / secrets ─────────────────────────────────────
+.env
+.env.local
+.env.*.local
+# NEVER commit real keys. Use .env.example as a template.
+
+# ── Logs ──────────────────────────────────────────────────────
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.log
+
+# ── Editor & OS ───────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ── Testing ───────────────────────────────────────────────────
+coverage/
+.nyc_output/
+
+# ── Vite / cache ─────────────────────────────────────────────
+.vite/
+vite.config.js.timestamp-*
+
+# ── Misc ──────────────────────────────────────────────────────
+*.local
+.cache/
+tmp/
+
+# ── Scaffold artifacts (created by failed shell glob on Windows) ──
+.sixth/
+{src,public,.github
