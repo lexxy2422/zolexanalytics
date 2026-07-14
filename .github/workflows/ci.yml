@@ -6,6 +6,13 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     name: Build & Lint
@@ -18,11 +25,14 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        # --legacy-peer-deps needed because eslint-plugin-react@7 declares
+        # peer dep eslint@^3..^9 but we use the latest 9.x; this is safe —
+        # the plugin works correctly at runtime.
+        run: npm ci --legacy-peer-deps
 
       - name: Lint
         run: npm run lint
@@ -30,9 +40,9 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          # Use a placeholder key for CI builds — the AI Analyst
-          # will show an auth error in the build but that's expected.
-          VITE_ANTHROPIC_API_KEY: ${{ secrets.VITE_ANTHROPIC_API_KEY || 'sk_placeholder_ci' }}
+          # Placeholder satisfies the Vite build (the key is embedded at build
+          # time, not called). Real API calls happen at runtime in the browser.
+          VITE_ANTHROPIC_API_KEY: sk-ant-placeholder-ci
           VITE_APP_ENV: production
 
       - name: Upload build artifact
@@ -48,11 +58,14 @@ jobs:
   #   needs: build
   #   runs-on: ubuntu-latest
   #   if: github.ref == 'refs/heads/main'
+  #   permissions:
+  #     contents: read
+  #     deployments: write
   #   steps:
   #     - uses: actions/checkout@v4
   #     - uses: actions/setup-node@v4
-  #       with: { node-version: '20', cache: 'npm' }
-  #     - run: npm ci
+  #       with: { node-version: '22', cache: 'npm' }
+  #     - run: npm ci --legacy-peer-deps
   #     - run: npm run build
   #       env:
   #         VITE_ANTHROPIC_API_KEY: ${{ secrets.VITE_ANTHROPIC_API_KEY }}

@@ -51,3 +51,10 @@ tmp/
 # ── Scaffold artifacts (created by failed shell glob on Windows) ──
 .sixth/
 {src,public,.github
+
+# ── Temp files / misrouted paths ─────────────────────────────────
+*repos.json
+*.temp.json
+
+# ── Claude Code settings (local-only) ────────────────────────────
+Zolextech/

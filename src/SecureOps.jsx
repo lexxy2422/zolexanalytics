@@ -187,10 +187,10 @@ const Sidebar = ({ active, setActive, wsStatus, user, onLogout }) => (
     {/* Logo */}
     <div style={{ padding:"18px 20px 14px", borderBottom:`1px solid ${T.border}` }}>
       <div style={{ display:"flex", alignItems:"center", gap:10 }}>
-        <div style={{ width:36, height:36, background:`linear-gradient(135deg,${T.cyan},${T.cyanDim})`, borderRadius:9, display:"flex", alignItems:"center", justifyContent:"center", fontSize:19, boxShadow:`0 0 14px ${T.cyan}33` }}>⚡</div>
+        <img src="/logo.svg" alt="ZolexTech Security" style={{ width:36, height:36, filter:`drop-shadow(0 0 7px ${T.cyan}66)` }} />
         <div>
-          <div style={{ fontFamily:"'Rajdhani',sans-serif", fontWeight:700, fontSize:15, color:T.textBright, letterSpacing:1 }}>SECUREOPS</div>
-          <div style={{ fontFamily:"'JetBrains Mono',monospace", fontSize:9, color:T.cyanDim, letterSpacing:2 }}>v2.4 · ZolexTech</div>
+          <div style={{ fontFamily:"'Rajdhani',sans-serif", fontWeight:700, fontSize:15, color:T.textBright, letterSpacing:1 }}>ZolexTech Security</div>
+          <div style={{ fontFamily:"'JetBrains Mono',monospace", fontSize:9, color:T.cyanDim, letterSpacing:2 }}>v3.0 · Enterprise</div>
         </div>
       </div>
     </div>
@@ -279,7 +279,7 @@ const LoginScreen = ({ onAuth }) => {
   const validate = () => {
     const e={};
     if(!form.email.match(/^[^@]+@[^@]+\.[^@]+$/)) e.email="Valid email required";
-    if(form.password.length<8) e.password="Minimum 8 characters";
+    if(mode!=="forgot" && form.password.length<8) e.password="Minimum 8 characters";
     if(mode==="signup"){ if(!form.name.trim()) e.name="Full name required"; if(form.confirm!==form.password) e.confirm="Passwords don't match"; }
     setErrors(e); return !Object.keys(e).length;
   };
@@ -311,17 +311,17 @@ const LoginScreen = ({ onAuth }) => {
           <div style={{ position:"absolute", inset:0, backgroundImage:`radial-gradient(${T.cyan}06 1px,transparent 1px)`, backgroundSize:"26px 26px" }} />
           <div style={{ position:"relative" }}>
             <div style={{ display:"flex", alignItems:"center", gap:14, marginBottom:36 }}>
-              <div style={{ width:48, height:48, background:`linear-gradient(135deg,${T.cyan},${T.cyanDim})`, borderRadius:12, display:"flex", alignItems:"center", justifyContent:"center", fontSize:26, boxShadow:`0 0 22px ${T.cyan}33` }}>⚡</div>
+              <img src="/logo.svg" alt="ZolexTech Security" style={{ width:48, height:48, filter:`drop-shadow(0 0 12px ${T.cyan}66)` }} />
               <div>
-                <div style={{ fontFamily:"'Rajdhani',sans-serif", fontWeight:700, fontSize:22, color:T.textBright, letterSpacing:2 }}>SECUREOPS</div>
-                <div style={{ fontFamily:"'JetBrains Mono',monospace", fontSize:10, color:T.cyanDim, letterSpacing:3 }}>PLATFORM v2.4</div>
+                <div style={{ fontFamily:"'Rajdhani',sans-serif", fontWeight:700, fontSize:22, color:T.textBright, letterSpacing:2 }}>ZolexTech Security</div>
+                <div style={{ fontFamily:"'JetBrains Mono',monospace", fontSize:10, color:T.cyanDim, letterSpacing:3 }}>PLATFORM v3.0</div>
               </div>
             </div>
             <div style={{ fontFamily:"'Rajdhani',sans-serif", fontWeight:700, fontSize:28, color:T.textBright, lineHeight:1.35, marginBottom:14 }}>
               Enterprise-Grade<br /><span style={{ color:T.cyan }}>Security Operations</span><br />in One Platform
             </div>
             <div style={{ fontSize:14, color:T.textDim, lineHeight:1.8, fontFamily:"'Rajdhani',sans-serif", marginBottom:28 }}>
-              Unified security intelligence, CI/CD hardening, compliance automation, and real-time threat hunting — powered by AI.
+              Unified security intelligence, CI/CD hardening, compliance automation, and real-time threat hunting — powered by ZolexTech Security.
             </div>
             <div style={{ display:"flex", flexWrap:"wrap", gap:8, marginBottom:32 }}>
               {["CI/CD Security","IaC Scanning","SOC 2","Threat Hunting","Grafana Plugin","JWT + 2FA"].map(f=>(
@@ -391,7 +391,7 @@ const LoginScreen = ({ onAuth }) => {
                 ))}
               </div>}
 
-              {mode==="login"  && <><div style={{ fontFamily:"'Rajdhani',sans-serif", fontWeight:700, fontSize:22, color:T.textBright, marginBottom:4 }}>Welcome back</div><div style={{ fontSize:13, color:T.textDim, marginBottom:22 }}>Sign in to your SecureOps workspace</div></>}
+              {mode==="login"  && <><div style={{ fontFamily:"'Rajdhani',sans-serif", fontWeight:700, fontSize:22, color:T.textBright, marginBottom:4 }}>Welcome back</div><div style={{ fontSize:13, color:T.textDim, marginBottom:22 }}>Sign in to your ZolexTech Security workspace</div></>}
               {mode==="signup" && <><div style={{ fontFamily:"'Rajdhani',sans-serif", fontWeight:700, fontSize:22, color:T.textBright, marginBottom:4 }}>Create account</div><div style={{ fontSize:13, color:T.textDim, marginBottom:22 }}>14-day free trial — no credit card required</div></>}
               {mode==="forgot" && <div style={{ textAlign:"center", marginBottom:24 }}>
                 <div style={{ width:56, height:56, borderRadius:14, background:`linear-gradient(135deg,${T.cyan}22,${T.purple}22)`, border:`1.5px solid ${T.cyanDim}44`, display:"flex", alignItems:"center", justifyContent:"center", fontSize:28, margin:"0 auto 14px" }}>🔒</div>
@@ -480,7 +480,8 @@ const BillingView = () => {
       limits:{pipelines:"∞",users:"∞",scans:"∞"} },
   ];
   const INVOICES=[
-    {id:"INV-2026-04",date:"Apr 1, 2026",plan:"Pro Plan",amount:"$119.00",status:"paid",period:"Apr 2026"},
+    {id:"INV-2026-05",date:"Jun 1, 2026",plan:"Pro Plan",amount:"$119.00",status:"paid",period:"May 2026"},
+    {id:"INV-2026-04",date:"May 1, 2026",plan:"Pro Plan",amount:"$119.00",status:"paid",period:"Apr 2026"},
     {id:"INV-2026-03",date:"Mar 1, 2026",plan:"Pro Plan",amount:"$119.00",status:"paid",period:"Mar 2026"},
     {id:"INV-2026-02",date:"Feb 1, 2026",plan:"Pro Plan",amount:"$119.00",status:"paid",period:"Feb 2026"},
     {id:"INV-2026-01",date:"Jan 1, 2026",plan:"Pro Plan",amount:"$119.00",status:"paid",period:"Jan 2026"},
@@ -523,7 +524,7 @@ const BillingView = () => {
     <div className="fadeIn">
       <div style={{ display:"flex", gap:14, marginBottom:20, flexWrap:"wrap" }}>
         <MetricCard label="CURRENT PLAN"  value="Pro"   icon="◈" color={T.cyan} />
-        <MetricCard label="NEXT BILLING"  value="Jun 1" icon="◎" color={T.amber} />
+        <MetricCard label="NEXT BILLING"  value="Jul 1" icon="◎" color={T.amber} />
         <MetricCard label="TEAM SEATS"    value={8}     icon="⊗" color={T.green} />
         <MetricCard label="SPEND / MO"    value="$119"  icon="$" color={T.purple} />
       </div>
@@ -619,7 +620,7 @@ const BillingView = () => {
                   <div style={{ position:"absolute", top:-20, right:-20, width:90, height:90, borderRadius:"50%", background:T.cyan+"09" }} />
                   <div style={{ position:"absolute", bottom:-25, right:50, width:70, height:70, borderRadius:"50%", background:T.purple+"09" }} />
                   <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:18 }}>
-                    <div style={{ fontFamily:"'Rajdhani',sans-serif", fontWeight:700, fontSize:13, color:T.cyan, letterSpacing:2 }}>SECUREOPS</div>
+                    <div style={{ fontFamily:"'Rajdhani',sans-serif", fontWeight:700, fontSize:13, color:T.cyan, letterSpacing:2 }}>ZOLEXTECH</div>
                     <div style={{ padding:"2px 8px", background:brand().color+"33", border:`1px solid ${brand().color}55`, borderRadius:3, fontSize:11, fontWeight:700, color:"#fff", fontFamily:"'JetBrains Mono',monospace" }}>{brand().name}</div>
                   </div>
                   <div style={{ fontFamily:"'JetBrains Mono',monospace", fontSize:17, color:T.textBright, letterSpacing:3, marginBottom:14 }}>
@@ -1205,7 +1206,6 @@ const DashboardView = () => {
 
 const CICDView = () => {
   const [tab, setTab]       = useState("pipelines");
-  const [_open, _setOpen]   = useState("pl-001");
   const [selPL, setSelPL]   = useState("pl-001");
   const [triggerRunning, setTriggerRunning] = useState(false);
   const [connTesting, setConnTesting] = useState(null);
@@ -3982,6 +3982,9 @@ const GrafanaView = () => {
 // ═══════════════════════════════════════════════════════════════════════
 // AI SECURITY ANALYST — Powered by Claude API
 // ═══════════════════════════════════════════════════════════════════════
+// Env var embedded at build time — used as the fallback key throughout the component.
+const ENV_API_KEY = import.meta.env.VITE_ANTHROPIC_API_KEY || "";
+
 const AIAnalystView = () => {
   const [messages, setMessages] = useState([
     { role:"assistant", content:"Hello! I'm your AI Security Analyst powered by Claude. I can analyze threats, review code for vulnerabilities, explain CVEs, generate incident reports, or help with compliance questions. What would you like to investigate today?" }
@@ -3992,8 +3995,7 @@ const AIAnalystView = () => {
   const [apiKey, setApiKey] = useState(() => {
     const stored = localStorage.getItem("anthropic_api_key");
     if (stored) return stored;
-    const env = import.meta.env.VITE_ANTHROPIC_API_KEY;
-    if (env) { localStorage.setItem("anthropic_api_key", env); return env; }
+    if (ENV_API_KEY) { localStorage.setItem("anthropic_api_key", ENV_API_KEY); return ENV_API_KEY; }
     return "";
   });
   const [keyDraft, setKeyDraft] = useState("");
@@ -4008,9 +4010,15 @@ const AIAnalystView = () => {
     setKeyDraft("");
     setShowKeySetup(false);
   };
+  // Removing the manual override restores the env-var key rather than disconnecting.
   const clearKey = () => {
     localStorage.removeItem("anthropic_api_key");
-    setApiKey("");
+    if (ENV_API_KEY) { localStorage.setItem("anthropic_api_key", ENV_API_KEY); }
+    setApiKey(ENV_API_KEY);
+  };
+  const openKeyModal = () => {
+    setKeyDraft(apiKey || ENV_API_KEY);
+    setShowKeySetup(true);
   };
 
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior:"smooth" }); }, [messages]);
@@ -4042,7 +4050,7 @@ const AIAnalystView = () => {
 
   const sendMessage = async () => {
     if (!input.trim() || loading) return;
-    if (!apiKey) { setShowKeySetup(true); return; }
+    if (!apiKey) { openKeyModal(); return; }
 
     const userMsg = { role:"user", content: input.trim() };
     const newHistory = [...messages, userMsg];
@@ -4075,7 +4083,8 @@ const AIAnalystView = () => {
         },
         body: JSON.stringify({
           model: "claude-sonnet-4-6",
-          max_tokens: 1000,
+          max_tokens: 2048,
+          stream: true,
           system: systemPrompts[context],
           messages: apiMessages,
         }),
@@ -4083,26 +4092,69 @@ const AIAnalystView = () => {
 
       if (!response.ok) {
         const errData = await response.json().catch(()=>({}));
-        const msg = response.status === 401
+        const errMsg = response.status === 401
           ? "⚠ Invalid API key — click the key icon above to update it."
           : response.status === 429
           ? "⚠ Rate limited — please wait a moment and try again."
           : response.status === 529
           ? "⚠ Claude API is temporarily overloaded — try again shortly."
           : `⚠ API error ${response.status}: ${errData?.error?.message || "Unknown error"}`;
-        setMessages(m => [...m, { role:"assistant", content: msg }]);
+        setMessages(m => [...m, { role:"assistant", content: errMsg }]);
         setLoading(false);
         return;
       }
 
-      const data = await response.json();
-      const reply = data.content?.[0]?.text || "⚠ Empty response received. Please try again.";
-      setMessages(m => [...m, { role:"assistant", content: reply }]);
+      // Add streaming placeholder and fill it token-by-token
+      setMessages(m => [...m, { role:"assistant", content:"", streaming:true }]);
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buf = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buf += decoder.decode(value, { stream: true });
+        const lines = buf.split("\n");
+        buf = lines.pop(); // keep any incomplete trailing line
+        for (const line of lines) {
+          if (!line.startsWith("data: ")) continue;
+          const payload = line.slice(6).trim();
+          if (!payload || payload === "[DONE]") continue;
+          try {
+            const evt = JSON.parse(payload);
+            if (evt.type === "content_block_delta" && evt.delta?.type === "text_delta") {
+              const token = evt.delta.text;
+              setMessages(m => {
+                const arr = [...m];
+                const last = arr[arr.length - 1];
+                if (last?.streaming) arr[arr.length - 1] = { ...last, content: last.content + token };
+                return arr;
+              });
+            }
+          } catch { /* ignore partial-event parse errors */ }
+        }
+      }
+
+      // Mark streaming complete
+      setMessages(m => {
+        const arr = [...m];
+        const last = arr[arr.length - 1];
+        if (last?.streaming) arr[arr.length - 1] = { ...last, streaming: false };
+        return arr;
+      });
     } catch (err) {
       const isNetErr = err instanceof TypeError && err.message.includes("fetch");
-      setMessages(m => [...m, { role:"assistant", content: isNetErr
+      const errContent = isNetErr
         ? "⚠ Network error — check your connection or CORS policy."
-        : "⚠ Unexpected error. Please try again." }]);
+        : "⚠ Unexpected error. Please try again.";
+      setMessages(m => {
+        const arr = [...m];
+        const last = arr[arr.length - 1];
+        // Replace streaming placeholder if it exists, otherwise append
+        if (last?.streaming) { arr[arr.length - 1] = { role:"assistant", content: errContent }; return arr; }
+        return [...m, { role:"assistant", content: errContent }];
+      });
     }
     setLoading(false);
   };
@@ -4205,7 +4257,7 @@ const AIAnalystView = () => {
                 {c.icon}
               </button>
             ))}
-            <button onClick={() => { setKeyDraft(""); setShowKeySetup(true); }}
+            <button onClick={openKeyModal}
               title={apiKey ? "Change API key" : "Configure API key"}
               style={{ padding:"4px 10px", background:apiKey?`${T.green}14`:`${T.amber}14`, border:`1px solid ${apiKey?T.green:T.amber}44`, borderRadius:4, color:apiKey?T.green:T.amber, fontFamily:"'JetBrains Mono',monospace", fontSize:10, cursor:"pointer", transition:"all .15s", whiteSpace:"nowrap" }}>
               {apiKey ? "🔑 Key set" : "🔑 Configure"}
@@ -4221,12 +4273,22 @@ const AIAnalystView = () => {
               <div style={{ width:32, height:32, borderRadius:"50%", background: msg.role==="user"?`linear-gradient(135deg,${T.cyan},${T.purple})`:`linear-gradient(135deg,${T.purple},${T.red})`, display:"flex", alignItems:"center", justifyContent:"center", fontSize:14, fontWeight:700, color:"#000", flexShrink:0, boxShadow:`0 0 10px ${msg.role==="user"?T.cyan:T.purple}44` }}>
                 {msg.role==="user"?"A":"✦"}
               </div>
-              <div style={{ maxWidth:"82%", padding:"12px 16px", background: msg.role==="user"?`${T.cyan}0e`:T.bg2, border:`1px solid ${msg.role==="user"?T.cyanDim:T.border}`, borderRadius: msg.role==="user"?"12px 12px 4px 12px":"12px 12px 12px 4px" }}>
-                {renderMsg(msg.content)}
+              <div style={{ maxWidth:"82%", padding:"12px 16px", background: msg.role==="user"?`${T.cyan}0e`:T.bg2, border:`1px solid ${msg.role==="user"?T.cyanDim:msg.streaming?T.purple:T.border}`, borderRadius: msg.role==="user"?"12px 12px 4px 12px":"12px 12px 12px 4px", transition:"border-color .2s" }}>
+                {msg.streaming && !msg.content ? (
+                  <div style={{ display:"flex", gap:5, padding:"2px 0" }}>
+                    {[0,1,2].map(i => <div key={i} style={{ width:8, height:8, borderRadius:"50%", background:T.purple, animation:`pulse 1.2s ease ${i*0.2}s infinite` }} />)}
+                  </div>
+                ) : (
+                  <>
+                    {renderMsg(msg.content)}
+                    {msg.streaming && <span className="cursor-blink" style={{ color:T.purple }} />}
+                  </>
+                )}
               </div>
             </div>
           ))}
-          {loading && (
+          {/* Separate dots only while waiting for the first streaming chunk */}
+          {loading && messages[messages.length - 1]?.role === "user" && (
             <div style={{ display:"flex", gap:12, alignItems:"flex-start" }}>
               <div style={{ width:32, height:32, borderRadius:"50%", background:`linear-gradient(135deg,${T.purple},${T.red})`, display:"flex", alignItems:"center", justifyContent:"center", fontSize:14, color:"#000" }}>✦</div>
               <div style={{ padding:"14px 18px", background:T.bg2, border:`1px solid ${T.border}`, borderRadius:"12px 12px 12px 4px" }}>
@@ -4280,7 +4342,7 @@ const AIAnalystView = () => {
         </Card>
         <Card>
           <SectionHeader label="Session Info" accent={T.cyan} />
-          {[["Model","claude-sonnet-4-6"],["Context",context],["Max tokens","1,000"],["Status",apiKey?"● Connected":"⚠ No key"],["Messages",messages.length]].map(([k,v])=>(
+          {[["Model","claude-sonnet-4-6"],["Mode","Streaming SSE"],["Context",context],["Max tokens","2,048"],["Status",apiKey?"● Connected":"⚠ No key"],["Messages",messages.length]].map(([k,v])=>(
             <div key={k} style={{ display:"flex", justifyContent:"space-between", padding:"6px 0", borderBottom:`1px solid ${T.border}` }}>
               <span style={{ fontSize:11, color:T.textDim, fontFamily:"'JetBrains Mono',monospace" }}>{k}</span>
               <span style={{ fontSize:11, color:k==="Status"?(apiKey?T.green:T.amber):T.cyan, fontFamily:"'JetBrains Mono',monospace" }}>{v}</span>
@@ -5297,7 +5359,7 @@ http {
         <MetricCard label="STOPPED"    value={SERVICES_BASE.filter(s=>s.status==="stopped").length}         icon="⏹"  color={T.red}/>
         <MetricCard label="DEGRADED"   value={SERVICES_BASE.filter(s=>s.health==="degraded").length}        icon="⚠"  color={T.amber} delta={1}/>
         <MetricCard label="TOTAL CPU"  value={totalCpu} unit="%" icon="⚙" color={totalCpu>80?T.red:T.orange}/>
-        <MetricCard label="STACK"      value="v2.4.1"   icon="⌬" color={T.textDim}/>
+        <MetricCard label="STACK"      value="v3.0.0"   icon="⌬" color={T.textDim}/>
       </div>
 
       {/* Tabs */}
@@ -5811,7 +5873,7 @@ const SettingsView = () => {
                       </div>
                       <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
                         {[
-                          ["Last successful send", SENTINEL_ERROR.lastOk],
+                          ["Last successful send", SENTINEL_STATS.lastOk],
                           ["Events dropped",        SENTINEL_ERROR.dropped.toLocaleString()],
                           ["Error started",         SENTINEL_ERROR.last],
                         ].map(([l,v])=>(
@@ -6120,7 +6182,6 @@ const IncidentView = () => {
     { author:"System",          time:"09:22", text:"Automated triage: High confidence lateral movement pattern (MITRE T1021.002)." },
   ]);
   const [taskDone, setTaskDone] = useState({});
-  const [_severity, _setSeverity] = useState("P1");
 
   const INCIDENTS = [
     {
@@ -7234,9 +7295,10 @@ const VulnView = () => {
   const [filterSev, setFilterSev] = useState("ALL");
   const [filterStatus, setFilterStatus] = useState("ALL");
   const [search, setSearch]   = useState("");
-  const [_assignRunning, _setAssignRunning] = useState(null);
+  const [resolving, setResolving] = useState(null);
+  const [assigning, setAssigning] = useState(null);
 
-  const VULNS = [
+  const [vulns, setVulns] = useState([
     { id:"VLN-001", cve:"CVE-2023-44487",  cvss:9.8,  sev:"CRITICAL", title:"HTTP/2 Rapid Reset (NGINX)",         asset:"nginx:1.24.0",         assetType:"container", discovered:"Apr 28",  status:"open",        owner:null,          sla:"2d",   exploitable:true,  patchAvail:true,  description:"A flaw in the HTTP/2 protocol allows a remote, unauthenticated attacker to rapidly reset connections using RST_STREAM frames, causing denial of service. Actively exploited in the wild.",  fix:"Upgrade nginx to ≥ 1.25.3 or apply WAF mitigation rule." },
     { id:"VLN-002", cve:"CVE-2024-0232",   cvss:7.8,  sev:"HIGH",     title:"SQLite Use-After-Free (Python)",     asset:"python:3.11.4",        assetType:"runtime",   discovered:"Apr 25",  status:"in_progress", owner:"Emeka",       sla:"7d",   exploitable:false, patchAvail:true,  description:"A use-after-free vulnerability in SQLite bundled with Python 3.11.4. Under specific conditions, local code execution may be possible.",                                                  fix:"Upgrade to Python ≥ 3.11.8 or rebuild container with patched base." },
     { id:"VLN-003", cve:"CVE-2024-1086",   cvss:7.8,  sev:"HIGH",     title:"Linux Kernel netfilter Priv Esc",    asset:"base image",           assetType:"os",        discovered:"Apr 20",  status:"open",        owner:null,          sla:"7d",   exploitable:false, patchAvail:true,  description:"A vulnerability in the Linux kernel netfilter nf_tables subsystem allows local attackers to escalate privileges to root via a use-after-free flaw.",                                     fix:"Update base image to latest Ubuntu/Alpine with kernel patch applied." },
@@ -7249,7 +7311,7 @@ const VulnView = () => {
     { id:"VLN-010", cve:"CVE-2024-22195",  cvss:6.1,  sev:"MEDIUM",   title:"Jinja2 XSS in xmlattr Filter",       asset:"Jinja2:3.1.2",         assetType:"library",   discovered:"Apr 5",   status:"in_progress", owner:"Funke",       sla:"30d",  exploitable:false, patchAvail:true,  description:"The xmlattr filter in Jinja2 does not escape values properly when special characters are used, enabling cross-site scripting attacks in rendered templates.",                           fix:"Upgrade Jinja2 to ≥ 3.1.3." },
     { id:"VLN-011", cve:"CVE-2023-49083",  cvss:5.5,  sev:"MEDIUM",   title:"cryptography DoS via NULL deref",    asset:"cryptography:41.0.5",  assetType:"library",   discovered:"Apr 2",   status:"resolved",    owner:"Adebayo",     sla:"30d",  exploitable:false, patchAvail:true,  description:"A NULL pointer dereference in the Python cryptography library causes DoS when parsing malformed PKCS12 files.",                                                                          fix:"Upgraded to cryptography 42.0.5. Resolved Apr 7." },
     { id:"VLN-012", cve:"B105",            cvss:3.1,  sev:"LOW",      title:"Hardcoded Password (Bandit B105)",    asset:"app/auth.py:42",       assetType:"source",    discovered:"May 3",   status:"open",        owner:null,          sla:"90d",  exploitable:false, patchAvail:false, description:"A hardcoded password string was found in the authentication module. While not directly exploitable if the string is a test credential, it is a security anti-pattern.",                  fix:"Replace with os.environ.get('DB_PASSWORD') and use AWS Secrets Manager." },
-  ];
+  ]);
 
   const ASSETS = [
     { name:"secureops-api:2.4.1",    type:"Docker Image", vulns:3, critical:1, high:1, medium:1, low:0, risk:88, os:"Python 3.11.4 / NGINX" },
@@ -7265,13 +7327,13 @@ const VulnView = () => {
   const statC = { open:T.red, in_progress:T.amber, resolved:T.green };
   const cvssC = s => s>=9?"#ff2244":s>=7?"#ff6b35":s>=4?"#ffb300":"#00ff9d";
 
-  const filtered = VULNS.filter(v =>
+  const filtered = vulns.filter(v =>
     (filterSev==="ALL" || v.sev===filterSev) &&
     (filterStatus==="ALL" || v.status===filterStatus) &&
     (!search || v.title.toLowerCase().includes(search.toLowerCase()) || v.cve.toLowerCase().includes(search.toLowerCase()) || v.asset.toLowerCase().includes(search.toLowerCase()))
   );
 
-  const open       = VULNS.filter(v=>v.status!=="resolved");
+  const open       = vulns.filter(v=>v.status!=="resolved");
   const critical   = open.filter(v=>v.sev==="CRITICAL");
   const riskScore  = Math.min(99, critical.length*22 + open.filter(v=>v.sev==="HIGH").length*7 + open.filter(v=>v.sev==="MEDIUM").length*2);
 
@@ -7295,7 +7357,7 @@ const VulnView = () => {
     <div className="fadeIn" style={{position:"relative"}}>
       {/* Detail drawer */}
       {selVuln && (() => {
-        const v = VULNS.find(x=>x.id===selVuln);
+        const v = vulns.find(x=>x.id===selVuln);
         return (
           <div style={{position:"fixed",top:0,right:0,bottom:0,width:480,background:T.bg1,borderLeft:`1px solid ${T.border}`,zIndex:200,overflowY:"auto",boxShadow:"-12px 0 50px rgba(0,0,0,.6)"}} className="slideUp">
             <div style={{padding:"18px 22px",borderBottom:`1px solid ${T.border}`,display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
@@ -7343,8 +7405,33 @@ const VulnView = () => {
                 <div style={{fontSize:13,color:T.text,fontFamily:"'Rajdhani',sans-serif",lineHeight:1.65}}>{v.fix}</div>
               </div>
               <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
-                <button style={{flex:1,padding:"9px 0",background:`${T.amber}14`,border:`1px solid ${T.amber}44`,borderRadius:5,color:T.amber,fontFamily:"'Rajdhani',sans-serif",fontWeight:700,fontSize:13,cursor:"pointer",minWidth:120}}>Assign to Me</button>
-                <button style={{flex:1,padding:"9px 0",background:`${T.green}14`,border:`1px solid ${T.green}44`,borderRadius:5,color:T.green,fontFamily:"'Rajdhani',sans-serif",fontWeight:700,fontSize:13,cursor:"pointer",minWidth:120}}>Mark Resolved ✓</button>
+                <button
+                  onClick={()=>{
+                    if(assigning===v.id||v.owner==="Adebayo"||v.status==="resolved") return;
+                    setAssigning(v.id);
+                    setTimeout(()=>{
+                      setVulns(vs=>vs.map(x=>x.id===v.id?{...x,owner:"Adebayo",status:x.status==="open"?"in_progress":x.status}:x));
+                      setAssigning(null);
+                    },800);
+                  }}
+                  disabled={assigning===v.id||v.owner==="Adebayo"||v.status==="resolved"}
+                  style={{flex:1,padding:"9px 0",background:assigning===v.id?T.bg3:`${T.amber}14`,border:`1px solid ${T.amber}44`,borderRadius:5,color:assigning===v.id||v.owner==="Adebayo"?T.green:T.amber,fontFamily:"'Rajdhani',sans-serif",fontWeight:700,fontSize:13,cursor:assigning===v.id||v.owner==="Adebayo"||v.status==="resolved"?"default":"pointer",minWidth:120}}>
+                  {assigning===v.id?"⟳ Assigning…":v.owner==="Adebayo"?"✓ Assigned":"Assign to Me"}
+                </button>
+                <button
+                  onClick={()=>{
+                    if(resolving===v.id||v.status==="resolved") return;
+                    setResolving(v.id);
+                    setTimeout(()=>{
+                      setVulns(vs=>vs.map(x=>x.id===v.id?{...x,status:"resolved"}:x));
+                      setResolving(null);
+                      setSelVuln(null);
+                    },900);
+                  }}
+                  disabled={resolving===v.id||v.status==="resolved"}
+                  style={{flex:1,padding:"9px 0",background:resolving===v.id?T.bg3:v.status==="resolved"?`${T.green}22`:`${T.green}14`,border:`1px solid ${T.green}44`,borderRadius:5,color:resolving===v.id?T.textDim:T.green,fontFamily:"'Rajdhani',sans-serif",fontWeight:700,fontSize:13,cursor:resolving===v.id||v.status==="resolved"?"default":"pointer",minWidth:120}}>
+                  {resolving===v.id?"⟳ Resolving…":v.status==="resolved"?"✓ Already Resolved":"Mark Resolved ✓"}
+                </button>
                 <button style={{flex:1,padding:"9px 0",background:`${T.purple}14`,border:`1px solid ${T.purple}44`,borderRadius:5,color:T.purple,fontFamily:"'Rajdhani',sans-serif",fontWeight:700,fontSize:13,cursor:"pointer",minWidth:120}}>Create Jira Ticket</button>
               </div>
             </div>
@@ -7356,9 +7443,9 @@ const VulnView = () => {
         <MetricCard label="CRITICAL"     value={critical.length}                               icon="◉" color={T.red}    delta={1}/>
         <MetricCard label="HIGH"         value={open.filter(v=>v.sev==="HIGH").length}         icon="▲" color={T.amber}  delta={-1}/>
         <MetricCard label="TOTAL OPEN"   value={open.length}                                   icon="⚠" color={T.amber}/>
-        <MetricCard label="RESOLVED"     value={VULNS.filter(v=>v.status==="resolved").length} icon="✓" color={T.green}/>
+        <MetricCard label="RESOLVED"     value={vulns.filter(v=>v.status==="resolved").length} icon="✓" color={T.green}/>
         <MetricCard label="RISK SCORE"   value={riskScore} unit="/100"                         icon="⬡" color={riskScore>70?T.red:T.amber}/>
-        <MetricCard label="EXPLOITABLE"  value={VULNS.filter(v=>v.exploitable&&v.status!=="resolved").length} icon="⚡" color={T.red}/>
+        <MetricCard label="EXPLOITABLE"  value={vulns.filter(v=>v.exploitable&&v.status!=="resolved").length} icon="⚡" color={T.red}/>
       </div>
 
       <div style={{display:"flex",marginBottom:16,borderBottom:`1px solid ${T.border}`}}>
@@ -7381,8 +7468,8 @@ const VulnView = () => {
               </div>
               <div style={{flex:1}}>
                 {["CRITICAL","HIGH","MEDIUM","LOW"].map(sev=>{
-                  const total = VULNS.filter(v=>v.sev===sev).length;
-                  const op    = VULNS.filter(v=>v.sev===sev&&v.status!=="resolved").length;
+                  const total = vulns.filter(v=>v.sev===sev).length;
+                  const op    = vulns.filter(v=>v.sev===sev&&v.status!=="resolved").length;
                   return (
                     <div key={sev} style={{marginBottom:8}}>
                       <div style={{display:"flex",justifyContent:"space-between",marginBottom:3}}>
@@ -7393,7 +7480,7 @@ const VulnView = () => {
                         <span style={{fontFamily:"'JetBrains Mono',monospace",fontSize:13,fontWeight:700,color:sevC[sev]}}>{total}</span>
                       </div>
                       <div style={{height:5,background:T.bg3,borderRadius:3}}>
-                        <div style={{width:`${(total/VULNS.length)*100}%`,height:"100%",background:sevC[sev],borderRadius:3}}/>
+                        <div style={{width:`${(total/vulns.length)*100}%`,height:"100%",background:sevC[sev],borderRadius:3}}/>
                       </div>
                     </div>
                   );
@@ -7402,7 +7489,7 @@ const VulnView = () => {
             </div>
             <div style={{padding:"12px 14px",background:`${T.red}08`,border:`1px solid ${T.red}33`,borderRadius:6}}>
               <div style={{fontFamily:"'Rajdhani',sans-serif",fontWeight:700,fontSize:13,color:T.red,marginBottom:4}}>{critical.length} CRITICAL vulnerabilities require immediate action</div>
-              <div style={{fontSize:12,color:T.textDim,fontFamily:"'Rajdhani',sans-serif"}}>{VULNS.filter(v=>v.exploitable&&v.status!=="resolved").length} are known exploitable in the wild. SLA: patch within 2 days.</div>
+              <div style={{fontSize:12,color:T.textDim,fontFamily:"'Rajdhani',sans-serif"}}>{vulns.filter(v=>v.exploitable&&v.status!=="resolved").length} are known exploitable in the wild. SLA: patch within 2 days.</div>
             </div>
           </Card>
 
@@ -7410,8 +7497,8 @@ const VulnView = () => {
             <SectionHeader label="SLA Compliance" accent={T.green}/>
             {["CRITICAL","HIGH","MEDIUM","LOW"].map(sev=>{
               const slaDays = SLA_DAYS[sev];
-              const onTrack = VULNS.filter(v=>v.sev===sev&&v.status==="resolved").length;
-              const total   = VULNS.filter(v=>v.sev===sev).length;
+              const onTrack = vulns.filter(v=>v.sev===sev&&v.status==="resolved").length;
+              const total   = vulns.filter(v=>v.sev===sev).length;
               const pct     = total ? Math.round((onTrack/total)*100) : 100;
               return (
                 <div key={sev} style={{marginBottom:12}}>
@@ -7429,7 +7516,7 @@ const VulnView = () => {
               );
             })}
             <div style={{marginTop:14,display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8}}>
-              {[{l:"Avg CVSS",v:"7.2",c:T.amber},{l:"Patch Avail",v:`${VULNS.filter(v=>v.patchAvail).length}/${VULNS.length}`,c:T.green},{l:"Exploitable",v:VULNS.filter(v=>v.exploitable).length,c:T.red}].map(s=>(
+              {[{l:"Avg CVSS",v:"7.2",c:T.amber},{l:"Patch Avail",v:`${vulns.filter(v=>v.patchAvail).length}/${vulns.length}`,c:T.green},{l:"Exploitable",v:vulns.filter(v=>v.exploitable).length,c:T.red}].map(s=>(
                 <div key={s.l} style={{padding:"8px 10px",background:T.bg2,borderRadius:5,textAlign:"center"}}>
                   <div style={{fontSize:10,color:T.textDim,fontFamily:"'JetBrains Mono',monospace",marginBottom:3}}>{s.l}</div>
                   <div style={{fontFamily:"'JetBrains Mono',monospace",fontSize:18,fontWeight:700,color:s.c}}>{s.v}</div>
@@ -7440,7 +7527,7 @@ const VulnView = () => {
 
           <Card style={{gridColumn:"1/-1"}}>
             <SectionHeader label="Top Critical & Exploitable Findings" accent={T.red}/>
-            {VULNS.filter(v=>v.status!=="resolved"&&(v.sev==="CRITICAL"||v.exploitable)).slice(0,5).map(v=>(
+            {vulns.filter(v=>v.status!=="resolved"&&(v.sev==="CRITICAL"||v.exploitable)).slice(0,5).map(v=>(
               <div key={v.id} onClick={()=>setSelVuln(v.id)} style={{display:"flex",alignItems:"center",gap:14,padding:"11px 14px",background:T.bg2,borderRadius:6,marginBottom:8,cursor:"pointer",borderLeft:`3px solid ${sevC[v.sev]}`,transition:"background .15s"}}
                 onMouseEnter={e=>e.currentTarget.style.background=T.bg3}
                 onMouseLeave={e=>e.currentTarget.style.background=T.bg2}>
@@ -7543,7 +7630,7 @@ const VulnView = () => {
         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14}}>
           <Card>
             <SectionHeader label="Remediation Backlog — Priority Order" accent={T.amber}/>
-            {VULNS.filter(v=>v.status!=="resolved").sort((a,b)=>b.cvss-a.cvss).map((v,i)=>(
+            {vulns.filter(v=>v.status!=="resolved").sort((a,b)=>b.cvss-a.cvss).map((v,i)=>(
               <div key={v.id} onClick={()=>setSelVuln(v.id)} style={{display:"flex",alignItems:"center",gap:12,padding:"10px 12px",background:T.bg2,borderRadius:6,marginBottom:6,cursor:"pointer",borderLeft:`3px solid ${sevC[v.sev]}`,transition:"background .12s"}}
                 onMouseEnter={e=>e.currentTarget.style.background=T.bg3}
                 onMouseLeave={e=>e.currentTarget.style.background=T.bg2}>
@@ -7583,7 +7670,7 @@ const VulnView = () => {
 
             <Card>
               <SectionHeader label="Quick Wins — Easy Patches" accent={T.cyan}/>
-              {VULNS.filter(v=>v.patchAvail&&v.status==="open"&&v.sev!=="LOW").slice(0,4).map(v=>(
+              {vulns.filter(v=>v.patchAvail&&v.status==="open"&&v.sev!=="LOW").slice(0,4).map(v=>(
                 <div key={v.id} style={{padding:"10px 12px",background:T.bg2,borderRadius:5,marginBottom:7,border:`1px solid ${T.border}`}}>
                   <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:4}}>
                     <div style={{fontFamily:"'Rajdhani',sans-serif",fontSize:13,fontWeight:600,color:T.textBright}}>{v.title}</div>
@@ -10099,7 +10186,7 @@ export default function App() {
   if (!user) return <LoginScreen onAuth={u=>{setUser(u);showToast(`Welcome back, ${u.name?.split(" ")[0]}!`);}} />;
 
   const View    = VIEWS[active] || DashboardView;
-  const [title, subtitle] = TITLES_MAP[active] || ["SecureOps",""];
+  const [title, subtitle] = TITLES_MAP[active] || ["ZolexTech Security",""];
   const UNREAD  = notifs.filter(n => !n.read).length;
   const sideW   = sidebarCollapsed ? 64 : 224;
 
@@ -10146,7 +10233,9 @@ export default function App() {
       {/* Collapsed Sidebar */}
       {sidebarCollapsed ? (
         <div style={{ width:64, minHeight:"100vh", background:T.bg1, borderRight:`1px solid ${T.border}`, position:"fixed", top:0, left:0, zIndex:100, display:"flex", flexDirection:"column", alignItems:"center", paddingTop:16, gap:4 }}>
-          <div onClick={()=>setSidebarCollapsed(false)} style={{ width:40, height:40, background:`linear-gradient(135deg,${T.cyan},${T.cyanDim})`, borderRadius:10, display:"flex", alignItems:"center", justifyContent:"center", fontSize:20, cursor:"pointer", marginBottom:12, boxShadow:`0 0 14px ${T.cyan}33` }}>⚡</div>
+          <div onClick={()=>setSidebarCollapsed(false)} style={{ cursor:"pointer", marginBottom:12 }}>
+            <img src="/logo.svg" alt="ZolexTech Security" style={{ width:40, height:40, filter:`drop-shadow(0 0 7px ${T.cyan}66)` }} />
+          </div>
           {NAV_ITEMS.filter(n=>n.id && !n.id.startsWith("__") && !n.section).map(item=>(
             <button key={item.id} onClick={()=>nav(item.id)} title={item.label} style={{ width:40, height:40, background:active===item.id?`${T.cyan}18`:"transparent", border:`1px solid ${active===item.id?T.cyan:T.border}`, borderRadius:8, cursor:"pointer", color:active===item.id?T.cyan:T.textDim, fontSize:16, display:"flex", alignItems:"center", justifyContent:"center", transition:"all .15s", marginBottom:2 }}>
               {item.icon}
@@ -10276,7 +10365,7 @@ export default function App() {
             <span style={{ fontSize:10, color:T.textDim, fontFamily:"'JetBrains Mono',monospace" }}>WS ● CONNECTED</span>
           </div>
           <div style={{ display:"flex", gap:16, alignItems:"center" }}>
-            <span style={{ fontSize:10, color:T.textDim, fontFamily:"'JetBrains Mono',monospace" }}>v2.4.1</span>
+            <span style={{ fontSize:10, color:T.textDim, fontFamily:"'JetBrains Mono',monospace" }}>v3.0.0</span>
             <span style={{ fontSize:10, color:T.textDim, fontFamily:"'JetBrains Mono',monospace" }}>ZolexTech & Consultant</span>
             <button onClick={()=>setShortcutsOpen(true)} style={{ background:"none", border:`1px solid ${T.border}`, borderRadius:3, cursor:"pointer", fontSize:10, color:T.textDim, fontFamily:"'JetBrains Mono',monospace", padding:"1px 7px" }}>?</button>
             <button onClick={()=>setCmdOpen(true)} style={{ background:"none", border:"none", cursor:"pointer", fontSize:10, color:T.cyan, fontFamily:"'JetBrains Mono',monospace", padding:0 }}>⌘K</button>
